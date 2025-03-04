@@ -43,7 +43,6 @@ jobs:
       - name: Run ESLint
         run: npx eslint "src/**/*.{js,ts,tsx}" || true
 
-
   test:
     name: Unit Testing
     timeout-minutes: 20
