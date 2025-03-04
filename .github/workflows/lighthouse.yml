@@ -36,6 +36,9 @@ jobs:
       - name: Debug - Check Files
         run: ls -lR
 
+
+
+
       - name: Upload Lighthouse Report
         uses: actions/upload-artifact@v4
         with:
