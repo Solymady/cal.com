@@ -24,7 +24,7 @@ jobs:
 
       - name: Run JMeter Test
         run: |
-          jmeter/bin/jmeter -n -t tests/jmeter/test-plan.jmx -l tests/jmeter/results.jtl -e -o tests/jmeter/report
+          jmeter/bin/jmeter -n -t tests/calcom.jmx -l tests/jmeter/results.jtl -e -o tests/jmeter/report
 
       - name: Upload JMeter Report
         uses: actions/upload-artifact@v3
