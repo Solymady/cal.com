@@ -1,0 +1,33 @@
+name: JMeter Performance Test
+
+on:
+  push:
+    branches:
+      - main  # Runs only when code is pushed to the main branch (after merge)
+
+jobs:
+  performance-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Install JMeter
+        run: |
+          sudo apt update
+          sudo apt install -y openjdk-11-jre
+          wget https://downloads.apache.org//jmeter/binaries/apache-jmeter-5.5.tgz
+          tar -xzf apache-jmeter-5.5.tgz
+          mv apache-jmeter-5.5 jmeter
+          echo "$(pwd)/jmeter/bin" >> $GITHUB_PATH
+
+      - name: Run JMeter Test
+        run: |
+          jmeter/bin/jmeter -n -t tests/jmeter/test-plan.jmx -l tests/jmeter/results.jtl -e -o tests/jmeter/report
+
+      - name: Upload JMeter Report
+        uses: actions/upload-artifact@v3
+        with:
+          name: jmeter-report
+          path: tests/jmeter/report
