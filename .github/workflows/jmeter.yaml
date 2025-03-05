@@ -28,6 +28,11 @@ jobs:
           mv "apache-jmeter-${JMETER_VERSION}" jmeter
           echo "$(pwd)/jmeter/bin" >> $GITHUB_PATH
 
+      - name: Ensure JMeter Report Directory Exists
+        run: |
+          mkdir -p tests/jmeter/report
+          chmod -R 777 tests/jmeter  # Ensure GitHub Actions can write files
+
       - name: Run JMeter Test
         run: |
           jmeter/bin/jmeter -n -t tests/calcom.jmx -l tests/jmeter/results.jtl -e -o tests/jmeter/report
