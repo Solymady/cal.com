@@ -37,6 +37,7 @@ jobs:
       - name: Run E2E Tests
         run: yarn test-e2e || true
 
+
       - name: Cleanup
         if: always()
         run: docker compose -f docker-compose.integration.yml down --remove-orphans
