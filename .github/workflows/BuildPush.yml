@@ -1,6 +1,5 @@
 name: Build and push image to DockerHub
 
-
 on:
   push:
     branches:
