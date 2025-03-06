@@ -39,6 +39,10 @@ RUN npx turbo prune --scope=@calcom/web --docker
 RUN yarn install
 
 
+
+
+
+
 ENV DATABASE_URL="postgresql://unicorn_user:magical_password@database:5432/calendso"
 RUN yarn db-deploy
 RUN yarn --cwd packages/prisma seed-app-store || true
